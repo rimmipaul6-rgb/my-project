@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>QR Code Generator</title>
+
+    <!-- QR Code Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #qrcode {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>QR Code Generator</h1>
+
+        <p>Enter text or a website URL:</p>
+
+        <input 
+            type="text" 
+            id="text"
+            placeholder="Enter text or URL"
+        >
+
+        <br>
+
+        <button onclick="generateQR()">
+            Generate QR Code
+        </button>
+
+        <div id="qrcode"></div>
+
+    </div>
+
+
+    <script>
+
+        function generateQR() {
+
+            // Get text entered by the user
+            let text = document.getElementById("text").value;
+
+            // Check if input is empty
+            if (text === "") {
+                alert("Please enter some text or a URL.");
+                return;
+            }
+
+            // Remove previous QR code
+            document.getElementById("qrcode").innerHTML = "";
+
+            // Generate QR Code
+            new QRCode(document.getElementById("qrcode"), {
+                text: text,
+                width: 200,
+                height: 200
+            });
+        }
+
+    </script>
+
+</body>
+</html>
